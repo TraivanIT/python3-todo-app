@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>todowoo</title>
+  </head>
+  <body>
+
+    {% if user.is_authenticated %}
+      <h2>You login with: {{ user.username }}</h2>
+      <a href="{% url 'createtodo' %}">Create Todo</a>
+      <a href="{% url 'currenttodos' %}">Current Todos</a>
+      <a href="{% url 'completedtodos' %}">Completed Todos</a>
+
+      <form class="" action="{% url 'logoutuser' %}" method="POST">
+        {% csrf_token %}
+        Logout <button type="submit" name="button">Logout</button>
+      </form>
+
+    {% else %}
+      <a href="{% url 'signupuser' %}">Sign Up</a>
+      <a href="{% url 'loginuser' %}">Login</a>
+    {% endif %}
+    <hr>
+
+    {% block content %}
+
+    {% endblock %}
+
+
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+  <h5>these all your Completed note:</h5>
+  {% for complete in completeds %}
+    <ul>
+      <li>
+
+        {% if complete.important %} <b> {% endif %}
+          {{ complete.title }} -
+          {% if complete.memo %}
+          {{ complete.memo|truncatechars:20 }}
+
+          {% endif %}
+          {{ complete.datecompleted|date:'M j Y H:i' }}
+        {% if complete.important %} </b> {% endif %}
+
+      </li>
+    </ul>
+  {% endfor %}
+{% endblock %}
